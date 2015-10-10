@@ -1,0 +1,21 @@
+{
+  "name": "webstarter",
+  "version": "1.0.0",
+  "authors": [
+    "Andrea Gava <andrea@gava.xyz>"
+  ],
+  "description": "A blank temmplate starter for html5 development (grunt, less, postcss, concat, uglify, jshint)",
+  "main": "main.js",
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery": "~2.1.4",
+    "bootstrap": "~3.3.5"
+  }
+}

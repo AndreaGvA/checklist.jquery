@@ -1,0 +1,12 @@
+{
+  "project": {
+    "options": {
+      "paths": [
+        "assets/css"
+      ]
+    },
+    "files": {
+      "assets/css/styles.css": "src/less/main.less"
+    }
+  }
+}

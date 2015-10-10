@@ -1,0 +1,9 @@
+{
+  "options": {
+    "banner": "/*! <%= pkg.name %> <%= grunt.template.today(\"yyyy-mm-dd\") %> */\n"
+  },
+  "cms_new": {
+    "src": "assets/js/main.js",
+    "dest": "assets/js/main.min.js"
+  }
+}

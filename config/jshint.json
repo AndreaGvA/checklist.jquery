@@ -1,0 +1,7 @@
+{
+  "options": {
+        "jshintrc": "bower_components/bootstrap/js/.jshintrc"
+  },
+  "bootstrap": "bower_components/bootstrap/js/*.js",
+  "main": "src/js/main.js"
+}
