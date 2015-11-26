@@ -2,6 +2,14 @@
 
 a jquery multiple select to checlist plugin
 
+todos:
+```
+1. use domFragment instead of dom
+2. allow disabled options
+3. more layouts
+
+```
+
 ________________________________
 
 
