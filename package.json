@@ -1,8 +1,8 @@
 {
-  "name": "webstarter",
-  "version": "1.0.0",
-  "description": "A blank temmplate starter for html5 development (grunt, less, postcss, concat, uglify, jshint)",
-  "main": "main.js",
+  "name": "checklist.jquery",
+  "version": "1.3.0",
+  "description": "a jquery multiple select to checlist plugin",
+  "main": "checklist.jquery.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },

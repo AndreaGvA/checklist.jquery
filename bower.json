@@ -1,11 +1,11 @@
 {
-  "name": "webstarter",
-  "version": "1.0.0",
+  "name": "checklist.jquery",
+  "version": "1.3.0",
   "authors": [
     "Andrea Gava <andrea@gava.xyz>"
   ],
-  "description": "A blank temmplate starter for html5 development (grunt, less, postcss, concat, uglify, jshint)",
-  "main": "main.js",
+  "description": "a jquery multiple select to checlist plugin",
+  "main": "checklist.jquery.js",
   "license": "MIT",
   "ignore": [
     "**/.*",
@@ -15,7 +15,6 @@
     "tests"
   ],
   "dependencies": {
-    "jquery": "~2.1.4",
-    "bootstrap": "~3.3.5"
+    "jquery": "~2.1.4"
   }
 }

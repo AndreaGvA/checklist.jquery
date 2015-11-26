@@ -4,7 +4,7 @@
 <head>
   <meta charset="utf-8">
 
-  <title>Web Project Starter</title>
+  <title>jQuery checklist</title>
   <meta name="description" content="Web Project Starter">
   <meta name="author" content="AG">
 
@@ -16,6 +16,45 @@
 </head>
 
 <body>
-  <script src="assets/js/main.min.js"></script>
+  <div class='container'><br><br>
+  	<select class='test' multiple="multiple" name="test">
+  		<option value=''>ALL</option>
+  		<option value='1'>Test 1</option>
+  		<option value='2'>Test 2</option>
+  		<option value='3'>Test 3</option>
+  		<option value='4'>Test 4</option>
+  		<option value='5'>Test 5</option>
+  		<option value='6'>Test 6</option>
+  		<option value='7'>Test 7</option>
+  		<option value='8'>Test 8</option>
+  		<option value='9'>Test 9</option>
+  	</select><br><br><br><br>
+  	<select class='test2' multiple="multiple" name="test2">
+  		<option value=''>ALL</option>
+  		<optgroup label="PIPPO">
+	  		<option value='1'>Test 1</option>
+	  		<option value='2'>Test 2</option>
+	  		<option value='3'>Test 3</option>
+	  		<option value='4'>Test 4</option>
+	  		<option value='5'>Test 5</option>
+  		</optgroup>
+  		<optgroup label="PAPERINO">
+	  		<option value='6'>Test 6</option>
+	  		<option value='7'>Test 7</option>
+	  		<option value='8'>Test 8</option>
+	  		<option value='9'>Test 9</option>
+	  	</optgroup>
+  	</select>
+  </div>
+  <script src="assets/js/main.js"></script>
+  <script>
+  	$(".test").checklist({
+  		optgroup: false
+  	});
+  	$(".test2").checklist({
+  		checkedOnTop: false,
+  		firstCheckAll: 1
+  	});
+  </script>
 </body>
 </html>

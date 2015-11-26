@@ -2,8 +2,12 @@
   "options": {
     "banner": "/*! <%= pkg.name %> <%= grunt.template.today(\"yyyy-mm-dd\") %> */\n"
   },
-  "cms_new": {
+  "project": {
     "src": "assets/js/main.js",
     "dest": "assets/js/main.min.js"
+  },
+  "library": {
+    "src": "dist/checklist.jquery.js",
+    "dest": "dist/checklist.jquery.min.js"
   }
 }

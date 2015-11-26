@@ -13,6 +13,7 @@ module.exports = function( grunt ){
 
 
     grunt.registerTask('default',['jshint', 'concat', 'less', 'postcss', 'uglify']);
+    grunt.registerTask('hint',['jshint']);
     //If u need to patch some libs use next line and config patch target in config/patch.js
     //grunt.registerTask('default',['patch', 'jshint', 'concat', 'less', 'postcss', 'uglify']);
 };

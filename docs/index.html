@@ -1,0 +1,1153 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+  <title>checklist.jquery.js</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="width=device-width, target-densitydpi=160dpi, initial-scale=1.0; maximum-scale=1.0; user-scalable=0;">
+  <link rel="stylesheet" media="all" href="docco.css" />
+</head>
+<body>
+  <div id="container">
+    <div id="background"></div>
+    
+    <ul class="sections">
+        
+          <li id="title">
+              <div class="annotation">
+                  <h1>checklist.jquery.js</h1>
+              </div>
+          </li>
+        
+        
+        
+        <li id="section-1">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-1">&#182;</a>
+              </div>
+              <h2 id="checklist-jquery-v1-0-0-2015-11-26-">checklist.jquery - v1.0.0 - 2015-11-26 </h2>
+
+            </div>
+            
+        </li>
+        
+        
+        <li id="section-2">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-2">&#182;</a>
+              </div>
+              <p>checklist.jquery.js</p>
+<h2 id="-author-andreag">@author AndreaG</h2>
+
+            </div>
+            
+        </li>
+        
+        
+        <li id="section-3">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-3">&#182;</a>
+              </div>
+              
+            </div>
+            
+        </li>
+        
+        
+        <li id="section-4">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-4">&#182;</a>
+              </div>
+              <hr>
+
+            </div>
+            
+        </li>
+        
+        
+        <li id="section-5">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-5">&#182;</a>
+              </div>
+              <p>Copyright (c) 2015 Andrea Gava</p>
+<p>Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the “Software”), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:</p>
+<p>The above copyright notice and this permission notice shall be included in
+all copies or substantial portions of the Software.</p>
+<p>THE SOFTWARE IS PROVIDED “AS IS”, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.  IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN</p>
+<h2 id="the-software-">THE SOFTWARE.</h2>
+
+            </div>
+            
+        </li>
+        
+        
+        <li id="section-6">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-6">&#182;</a>
+              </div>
+              
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>
+(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"> $ </span>)</span>{
+<span class="hljs-pi">  "use strict"</span>;</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-7">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-7">&#182;</a>
+              </div>
+              <p>private method checkbox
+This method is used to check the checkboxes(and select)</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>  <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">checkbox</span>(<span class="hljs-params">$this, o</span>)</span>{
+    
+    <span class="hljs-keyword">var</span> $label, $checkbox, isSelected;</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-8">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-8">&#182;</a>
+              </div>
+              <p>option firstCheckAll 
+[1=checks all checkboxes] 
+[2=checks only firs checkbox but works like all are checked - default option]
+[false=normal behavior]</p>
+
+            </div>
+            
+        </li>
+        
+        
+        <li id="section-9">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-9">&#182;</a>
+              </div>
+              <p>if option firstCheckAll==1</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>    <span class="hljs-keyword">if</span>(o.firstCheckAll==<span class="hljs-number">1</span>){
+    	
+        $checkbox=$<span class="hljs-keyword">this</span>.next(<span class="hljs-string">"."</span>+o.prefix+<span class="hljs-string">"checklist"</span>).find(<span class="hljs-string">"li:not(:first-child) input[type=checkbox]"</span>);
+        $<span class="hljs-keyword">this</span>.next(<span class="hljs-string">"."</span>+o.prefix+<span class="hljs-string">"checklist"</span>).find(<span class="hljs-string">"li:first-child input[type=checkbox]"</span>).change(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{
+            
+            <span class="hljs-keyword">if</span>($(<span class="hljs-keyword">this</span>).is(<span class="hljs-string">":checked"</span>)){
+            	
+                $<span class="hljs-keyword">this</span>.find(<span class="hljs-string">'option'</span>).each(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>{
+                    $(<span class="hljs-keyword">this</span>).attr(<span class="hljs-string">"selected"</span>, <span class="hljs-string">"selected"</span>);
+                });
+                $<span class="hljs-keyword">this</span>.next(<span class="hljs-string">"."</span>+o.prefix+<span class="hljs-string">"checklist"</span>).find(<span class="hljs-string">"li:not(:first-child) input[type=checkbox]"</span>).each(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>{
+                    $(<span class="hljs-keyword">this</span>).prop(<span class="hljs-string">"checked"</span>, <span class="hljs-literal">true</span>); 
+                    <span class="hljs-built_in">window</span>.console.log($(<span class="hljs-keyword">this</span>)); 
+                });
+                $label=$<span class="hljs-keyword">this</span>.next(<span class="hljs-string">"."</span>+o.prefix+<span class="hljs-string">"checklist"</span>).find(<span class="hljs-string">"li:first-child"</span>).text();
+                $<span class="hljs-keyword">this</span>.next(<span class="hljs-string">"."</span>+o.prefix+<span class="hljs-string">"checklist"</span>).find(<span class="hljs-string">"."</span>+o.prefix+<span class="hljs-string">"label"</span>).html($label);
+                isSelected=<span class="hljs-literal">true</span>;
+            } <span class="hljs-keyword">else</span> {
+                $<span class="hljs-keyword">this</span>.find(<span class="hljs-string">'option'</span>).each(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>{
+                    $(<span class="hljs-keyword">this</span>).removeAttr(<span class="hljs-string">"selected"</span>);
+                });
+                $<span class="hljs-keyword">this</span>.next(<span class="hljs-string">"."</span>+o.prefix+<span class="hljs-string">"checklist"</span>).find(<span class="hljs-string">"input[type=checkbox]"</span>).each(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>{
+                    $(<span class="hljs-keyword">this</span>).prop(<span class="hljs-string">"checked"</span>, <span class="hljs-literal">false</span>);
+                });
+                $<span class="hljs-keyword">this</span>.next(<span class="hljs-string">"."</span>+o.prefix+<span class="hljs-string">"checklist"</span>).find(<span class="hljs-string">"."</span>+o.prefix+<span class="hljs-string">"label"</span>).html(<span class="hljs-string">""</span>);
+                isSelected=<span class="hljs-literal">false</span>;
+            }</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-10">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-10">&#182;</a>
+              </div>
+              <p>provides a callback for first element click and transports the select selector and a boolean for selected checkbox</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>            o.first($<span class="hljs-keyword">this</span>, isSelected);
+        });</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-11">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-11">&#182;</a>
+              </div>
+              <p>else  if option firstCheckAll=2</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>    } <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(o.firstCheckAll==<span class="hljs-number">2</span>){
+        
+        $checkbox=$<span class="hljs-keyword">this</span>.next(<span class="hljs-string">"."</span>+o.prefix+<span class="hljs-string">"checklist"</span>).find(<span class="hljs-string">"li:not(:first-child) input[type=checkbox]"</span>);
+        
+        $<span class="hljs-keyword">this</span>.next(<span class="hljs-string">"."</span>+o.prefix+<span class="hljs-string">"checklist"</span>).find(<span class="hljs-string">"li:first-child input[type=checkbox]"</span>).change(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{
+            isSelected=<span class="hljs-literal">false</span>;
+            <span class="hljs-keyword">if</span>(!$(<span class="hljs-keyword">this</span>).is(<span class="hljs-string">":checked"</span>) &amp;&amp; $checkbox.find(<span class="hljs-string">":checked"</span>).length === <span class="hljs-number">0</span>) {
+                
+                $<span class="hljs-keyword">this</span>.next(<span class="hljs-string">"."</span>+o.prefix+<span class="hljs-string">"checklist"</span>).find(<span class="hljs-string">"."</span>+o.prefix+<span class="hljs-string">"label"</span>).html(<span class="hljs-string">""</span>);
+                isSelected=<span class="hljs-literal">false</span>;
+            } <span class="hljs-keyword">else</span> {
+                $<span class="hljs-keyword">this</span>.find(<span class="hljs-string">'option:not(:first-child)'</span>).each(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>{
+                    $(<span class="hljs-keyword">this</span>).removeAttr(<span class="hljs-string">"selected"</span>);
+                });
+                $<span class="hljs-keyword">this</span>.next(<span class="hljs-string">"."</span>+o.prefix+<span class="hljs-string">"checklist"</span>).find(<span class="hljs-string">"li:not(:first-child) input[type=checkbox]"</span>).each(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>{
+                    $(<span class="hljs-keyword">this</span>).prop(<span class="hljs-string">"checked"</span>, <span class="hljs-literal">false</span>);
+                });
+                $label=$<span class="hljs-keyword">this</span>.next(<span class="hljs-string">"."</span>+o.prefix+<span class="hljs-string">"checklist"</span>).find(<span class="hljs-string">"li:first-child"</span>).text();
+                $<span class="hljs-keyword">this</span>.next(<span class="hljs-string">"."</span>+o.prefix+<span class="hljs-string">"checklist"</span>).find(<span class="hljs-string">"."</span>+o.prefix+<span class="hljs-string">"label"</span>).html($label);
+                isSelected=<span class="hljs-literal">true</span>;
+            }</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-12">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-12">&#182;</a>
+              </div>
+              <p>provides a callback for first element click and transports the select selector and a boolean for selected checkbox</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>            o.first($<span class="hljs-keyword">this</span>, isSelected);
+        });</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-13">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-13">&#182;</a>
+              </div>
+              <p>else i define the normal behavior    </p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>    } <span class="hljs-keyword">else</span> {
+        $checkbox=$<span class="hljs-keyword">this</span>.next(<span class="hljs-string">"."</span>+o.prefix+<span class="hljs-string">"checklist"</span>).find(<span class="hljs-string">"input[type=checkbox]"</span>);
+    }</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-14">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-14">&#182;</a>
+              </div>
+              <p>for each checkbox created </p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>    $checkbox.each(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>{</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-15">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-15">&#182;</a>
+              </div>
+              <p>i listen when the checkbox change value</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>        $(<span class="hljs-keyword">this</span>).change(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>{
+            <span class="hljs-keyword">var</span> $selector=$(<span class="hljs-keyword">this</span>);
+            <span class="hljs-keyword">var</span> $value=$selector.val();</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-16">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-16">&#182;</a>
+              </div>
+              <p>if the user checked the checkbox </p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>            <span class="hljs-keyword">if</span>($selector.is(<span class="hljs-string">":checked"</span>)){
+                $<span class="hljs-keyword">this</span>.find(<span class="hljs-string">'option[value="'</span> + $value + <span class="hljs-string">'"]'</span>).attr(<span class="hljs-string">"selected"</span>, <span class="hljs-string">"selected"</span>);</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-17">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-17">&#182;</a>
+              </div>
+              <p>if is the first checkbox and the firstCheckAll option is set</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>                <span class="hljs-keyword">if</span>(o.firstCheckAll==<span class="hljs-number">2</span> || o.firstCheckAll==<span class="hljs-number">1</span>) {
+                    $<span class="hljs-keyword">this</span>.next(<span class="hljs-string">"."</span>+o.prefix+<span class="hljs-string">"checklist"</span>).find(<span class="hljs-string">"li:first-child input[type=checkbox]"</span>).prop(<span class="hljs-string">"checked"</span>, <span class="hljs-literal">false</span>);
+                }</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-18">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-18">&#182;</a>
+              </div>
+              <p>else if unchecked the checkbox</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>            } <span class="hljs-keyword">else</span> {
+                $<span class="hljs-keyword">this</span>.find(<span class="hljs-string">'option[value="'</span> + $value + <span class="hljs-string">'"]'</span>).removeAttr(<span class="hljs-string">"selected"</span>);</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-19">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-19">&#182;</a>
+              </div>
+              <p>if is the first checkbox and the firstCheckAll option is set</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>                <span class="hljs-keyword">if</span>(o.firstCheckAll==<span class="hljs-number">2</span> || o.firstCheckAll==<span class="hljs-number">1</span>) {
+                    $<span class="hljs-keyword">this</span>.next(<span class="hljs-string">"."</span>+o.prefix+<span class="hljs-string">"checklist"</span>).find(<span class="hljs-string">"li:first-child input[type=checkbox]"</span>).prop(<span class="hljs-string">"checked"</span>, <span class="hljs-literal">false</span>);
+                }
+            }</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-20">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-20">&#182;</a>
+              </div>
+              <p>if i used some optgroups [does’nt work with the option checkedOnTop set to true]</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>            <span class="hljs-keyword">if</span>(o.optgroup===<span class="hljs-literal">true</span>) {
+                $label=<span class="hljs-string">""</span>;
+                $<span class="hljs-keyword">this</span>.next().find(<span class="hljs-string">'input:checked'</span>).each(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>{
+                    <span class="hljs-keyword">if</span>($label!==<span class="hljs-string">""</span>){
+                        $label+=<span class="hljs-string">", "</span>+$(<span class="hljs-keyword">this</span>).parent().text();
+                    } <span class="hljs-keyword">else</span> {
+                        $label+=$(<span class="hljs-keyword">this</span>).parent().text();
+                    }
+                });
+                $<span class="hljs-keyword">this</span>.next(<span class="hljs-string">"."</span>+o.prefix+<span class="hljs-string">"checklist"</span>).find(<span class="hljs-string">"."</span>+o.prefix+<span class="hljs-string">"label"</span>).html($label);</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-21">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-21">&#182;</a>
+              </div>
+              <p>else if is a plain selectbox</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>            } <span class="hljs-keyword">else</span> {
+                $label=<span class="hljs-string">""</span>;
+                $<span class="hljs-keyword">this</span>.next().find(<span class="hljs-string">'input:checked'</span>).each(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>{
+                    <span class="hljs-keyword">if</span>($label!==<span class="hljs-string">""</span>){
+                        $label+=<span class="hljs-string">", "</span>+$(<span class="hljs-keyword">this</span>).parent().text();
+                    } <span class="hljs-keyword">else</span> {
+                        $label+=$(<span class="hljs-keyword">this</span>).parent().text();
+                    }
+                });
+                $<span class="hljs-keyword">this</span>.next(<span class="hljs-string">"."</span>+o.prefix+<span class="hljs-string">"checklist"</span>).find(<span class="hljs-string">"."</span>+o.prefix+<span class="hljs-string">"label"</span>).html($label);
+            }</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-22">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-22">&#182;</a>
+              </div>
+              <p>provides a callback for the change event, transports the checkbox selector and the checkbox value</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>            o.change($selector, $value);
+        });
+    });
+  }</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-23">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-23">&#182;</a>
+              </div>
+              <p>private method toggle
+provides the checklist open/close behaviors</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>  <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">toggle</span>(<span class="hljs-params">$this, o</span>) </span>{</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-24">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-24">&#182;</a>
+              </div>
+              <p>when the label or the toggle button is clicked</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>    $<span class="hljs-keyword">this</span>.children(<span class="hljs-string">"."</span>+o.prefix+<span class="hljs-string">"toggle, ."</span>+o.prefix+<span class="hljs-string">"label"</span>).click(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>{</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-25">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-25">&#182;</a>
+              </div>
+              <p>if the checklist is visible it hides it</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>        <span class="hljs-keyword">if</span>($<span class="hljs-keyword">this</span>.children(<span class="hljs-string">"."</span>+o.prefix+<span class="hljs-string">"list"</span>).is(<span class="hljs-string">":visible"</span>)){
+            $<span class="hljs-keyword">this</span>.children(<span class="hljs-string">"."</span>+o.prefix+<span class="hljs-string">"list"</span>).fadeOut(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>{
+                $<span class="hljs-keyword">this</span>.children(<span class="hljs-string">"."</span>+o.prefix+<span class="hljs-string">"toggle"</span>).css(<span class="hljs-string">"background"</span>, <span class="hljs-string">"url(images/v.png) no-repeat 3px 0px"</span>).css(<span class="hljs-string">"backgroundSize"</span>, <span class="hljs-string">"contain"</span>);
+                $(<span class="hljs-string">"body"</span>).unbind(<span class="hljs-string">"mouseup"</span>);
+            });</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-26">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-26">&#182;</a>
+              </div>
+              <p>else if the checklist is closed</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>        } <span class="hljs-keyword">else</span> {</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-27">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-27">&#182;</a>
+              </div>
+              <p>if the checkedOnTop option is set to true</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>            <span class="hljs-keyword">if</span>(o.checkedOnTop===<span class="hljs-literal">true</span>){</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-28">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-28">&#182;</a>
+              </div>
+              <p>if the firstCheckAll option is set i first clone and remove the first li</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>            	<span class="hljs-keyword">var</span> first;
+             	<span class="hljs-keyword">if</span>(o.firstCheckAll==<span class="hljs-number">2</span> || o.firstCheckAll==<span class="hljs-number">1</span>) {
+                	first=$<span class="hljs-keyword">this</span>.find(<span class="hljs-string">"li:first-child"</span>).clone();
+                	$<span class="hljs-keyword">this</span>.find(<span class="hljs-string">"li:first-child"</span>).remove();
+                }
+                <span class="hljs-keyword">var</span> li=$<span class="hljs-keyword">this</span>.find(<span class="hljs-string">"li"</span>);</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-29">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-29">&#182;</a>
+              </div>
+              <p>than i sort the li’s</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>                li.sort(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">a,b</span>) </span>{
+                    <span class="hljs-keyword">var</span> an = $(a).html().replace(<span class="hljs-regexp">/&lt;(?:.|\n)*?&gt;/gm</span>, <span class="hljs-string">''</span>),
+                        bn = $(b).html().replace(<span class="hljs-regexp">/&lt;(?:.|\n)*?&gt;/gm</span>, <span class="hljs-string">''</span>);
+                    
+                    <span class="hljs-keyword">if</span> (an &gt; bn) <span class="hljs-keyword">return</span> <span class="hljs-number">1</span>;
+                    <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (an &lt; bn) <span class="hljs-keyword">return</span> -<span class="hljs-number">1</span>;
+                    <span class="hljs-keyword">else</span> <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+                });
+                
+                $<span class="hljs-keyword">this</span>.find(<span class="hljs-string">"ul"</span>).empty().append( li );</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-30">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-30">&#182;</a>
+              </div>
+              <p>and move the selected checkboxes li’s on top</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>                $<span class="hljs-keyword">this</span>.find(<span class="hljs-string">"li"</span>).each(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>{
+                    <span class="hljs-keyword">if</span>($(<span class="hljs-keyword">this</span>).children(<span class="hljs-string">'input'</span>).is(<span class="hljs-string">":checked"</span>)) {
+                        <span class="hljs-keyword">var</span> clone=$(<span class="hljs-keyword">this</span>).clone();
+                        $(<span class="hljs-keyword">this</span>).remove();
+                        clone.prependTo($<span class="hljs-keyword">this</span>.find(<span class="hljs-string">"ul"</span>));
+                    }
+                });</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-31">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-31">&#182;</a>
+              </div>
+              <p>if the firstCheckAll option is set i prepend the first option cloned before</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>             	<span class="hljs-keyword">if</span>(o.firstCheckAll==<span class="hljs-number">2</span> || o.firstCheckAll==<span class="hljs-number">1</span>) {
+               	 	first.prependTo($<span class="hljs-keyword">this</span>.find(<span class="hljs-string">"ul"</span>));
+                }</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-32">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-32">&#182;</a>
+              </div>
+              <p>finally i invoke the checkbox private method</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>                checkbox($<span class="hljs-keyword">this</span>.prev(<span class="hljs-string">"select"</span>), o);
+            }</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-33">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-33">&#182;</a>
+              </div>
+              <p>open the checklist</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>            $<span class="hljs-keyword">this</span>.children(<span class="hljs-string">"."</span>+o.prefix+<span class="hljs-string">"list"</span>).fadeIn(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>{
+                $<span class="hljs-keyword">this</span>.children(<span class="hljs-string">"."</span>+o.prefix+<span class="hljs-string">"toggle"</span>).css(<span class="hljs-string">"background"</span>, <span class="hljs-string">"url(images/x.png) no-repeat 3px 0px"</span>).css(<span class="hljs-string">"backgroundSize"</span>, <span class="hljs-string">"contain"</span>);
+                $(<span class="hljs-string">"body"</span>).on(<span class="hljs-string">"mouseup"</span>,<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">e</span>)</span>{
+                    <span class="hljs-keyword">var</span> $cont=$<span class="hljs-keyword">this</span>.children(<span class="hljs-string">"."</span>+o.prefix+<span class="hljs-string">"list"</span>);
+                     <span class="hljs-keyword">if</span> (!$cont.is(e.target) &amp;&amp; $cont.has(e.target).length === <span class="hljs-number">0</span>) {
+                        $cont.fadeOut(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>{
+                            $(<span class="hljs-string">"body"</span>).unbind(<span class="hljs-string">"mouseup"</span>);
+                        });
+                    }
+                });
+            });
+            
+        } 
+    });
+  }</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-34">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-34">&#182;</a>
+              </div>
+              <p>private method template
+returns the checklist html template</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>  <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">template</span>(<span class="hljs-params">o</span>)</span>{
+    <span class="hljs-keyword">var</span> $tpl=<span class="hljs-string">"&lt;div class='"</span>+o.prefix+<span class="hljs-string">"checklist'&gt;"</span>;
+    $tpl+=<span class="hljs-string">"&lt;div class='"</span>+o.prefix+<span class="hljs-string">"label'&gt;&amp;nbsp;"</span>;
+    $tpl+=<span class="hljs-string">"&lt;/div&gt;"</span>;
+    $tpl+=<span class="hljs-string">"&lt;ul class='"</span>+o.prefix+<span class="hljs-string">"list' &gt;"</span>;
+    $tpl+=<span class="hljs-string">"&lt;/ul&gt;"</span>;
+    $tpl+=<span class="hljs-string">"&lt;div class='"</span>+o.prefix+<span class="hljs-string">"toggle'&gt;"</span>;
+    $tpl+=<span class="hljs-string">"&lt;/div&gt;"</span>;
+    $tpl+=<span class="hljs-string">"&lt;/div&gt;"</span>;
+    <span class="hljs-keyword">return</span> $tpl;
+  }</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-35">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-35">&#182;</a>
+              </div>
+              <p>private method checkboxTemplate
+returns the li’s with checkboxes html template</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>  <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">checkboxTemplate</span>(<span class="hljs-params">name, value, label</span>)</span>{
+    <span class="hljs-keyword">var</span> $tpl=<span class="hljs-string">"&lt;li&gt;"</span>;
+    $tpl+=<span class="hljs-string">"&lt;input type='checkbox' name='"</span>+name+<span class="hljs-string">"' value='"</span>+value+<span class="hljs-string">"' /&gt;"</span>;
+    $tpl+=label;
+    $tpl+=<span class="hljs-string">"&lt;/li&gt;"</span>;
+    <span class="hljs-keyword">return</span> $tpl;
+  }</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-36">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-36">&#182;</a>
+              </div>
+              <p>private method optgroupTemplate
+returns the li’s for optgrooup html template</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>  <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">optgroupTemplate</span>(<span class="hljs-params">label, o</span>)</span>{
+    <span class="hljs-keyword">var</span> $tpl=<span class="hljs-string">"&lt;li class='"</span>+o.prefix+<span class="hljs-string">"group'&gt;"</span>;
+    $tpl+=label;
+    $tpl+=<span class="hljs-string">"&lt;/li&gt;"</span>;
+    <span class="hljs-keyword">return</span> $tpl;
+  }</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-37">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-37">&#182;</a>
+              </div>
+              <p>private method remove
+remove the checklist from the dom</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>  <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">remove</span>(<span class="hljs-params">$this, o</span>)</span>{
+    $<span class="hljs-keyword">this</span>.next(<span class="hljs-string">"."</span>+o.prefix+<span class="hljs-string">"checklist"</span>).remove();
+  }</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-38">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-38">&#182;</a>
+              </div>
+              <p>The public methods object</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>  <span class="hljs-keyword">var</span> methods = {</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-39">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-39">&#182;</a>
+              </div>
+              <p>public method $().checklist(); (normal behavior)</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>    init : <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">options</span>) </span>{  
+        <span class="hljs-keyword">var</span> o = $.extend({}, $.fn.checklist.defaults, options);
+        
+        <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>.each(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{
+            <span class="hljs-keyword">var</span> $<span class="hljs-keyword">this</span> = $(<span class="hljs-keyword">this</span>);</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-40">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-40">&#182;</a>
+              </div>
+              <p>hides the selectbox</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>            $<span class="hljs-keyword">this</span>.hide().attr(<span class="hljs-string">'disabled'</span>, <span class="hljs-string">'disabled'</span>);</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-41">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-41">&#182;</a>
+              </div>
+              <p>insert the checlist after the checkbox</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>            <span class="hljs-keyword">var</span> $tpl=template(o);
+            $($tpl).insertAfter($<span class="hljs-keyword">this</span>);</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-42">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-42">&#182;</a>
+              </div>
+              <p>get the checklist selector</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>            <span class="hljs-keyword">var</span> $that=$<span class="hljs-keyword">this</span>.next(<span class="hljs-string">"."</span>+o.prefix+<span class="hljs-string">"checklist"</span>);</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-43">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-43">&#182;</a>
+              </div>
+              <p>and pass it to the toggle private method invoking it</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>            toggle($that, o);</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-44">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-44">&#182;</a>
+              </div>
+              <p>add the checkboxes to the checklist</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>            <span class="hljs-keyword">var</span> $name=$<span class="hljs-keyword">this</span>.attr(<span class="hljs-string">"name"</span>);
+            $<span class="hljs-keyword">this</span>.find(<span class="hljs-string">"option"</span>).each(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>{
+                <span class="hljs-keyword">var</span> $label=$(<span class="hljs-keyword">this</span>).html();
+                <span class="hljs-keyword">var</span> $value=$(<span class="hljs-keyword">this</span>).val();
+                $tpl=checkboxTemplate($name, $value, $label);
+                $that.children(<span class="hljs-string">"ul"</span>).append($tpl);
+            });</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-45">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-45">&#182;</a>
+              </div>
+              <p>pass the select selector to the checkbox private method and invoke it</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>            checkbox($<span class="hljs-keyword">this</span>, o);</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-46">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-46">&#182;</a>
+              </div>
+              <p>if option optgroup is true insert the optgroup li’s</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>            <span class="hljs-keyword">if</span>(o.optgroup===<span class="hljs-literal">true</span>) {
+                 $<span class="hljs-keyword">this</span>.find(<span class="hljs-string">"optgroup"</span>).each(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>{
+                    <span class="hljs-keyword">var</span> $label=$(<span class="hljs-keyword">this</span>).attr(<span class="hljs-string">"label"</span>);
+                    $tpl=optgroupTemplate($label, o);
+                    <span class="hljs-keyword">var</span> $before=$(<span class="hljs-keyword">this</span>).children(<span class="hljs-string">"option:first-child"</span>).val();
+                    <span class="hljs-keyword">var</span> $ins=$<span class="hljs-keyword">this</span>.next(<span class="hljs-string">"."</span>+o.prefix+<span class="hljs-string">"checklist"</span>).find(<span class="hljs-string">'input[type=checkbox][value='</span> + $before + <span class="hljs-string">']'</span>).closest(<span class="hljs-string">"li"</span>);
+                    $($tpl).insertBefore($ins);
+                    
+                 });
+            }
+        
+          });
+    },</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-47">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-47">&#182;</a>
+              </div>
+              <p>public method destroy</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>    destroy : <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">options</span>) </span>{
+        <span class="hljs-keyword">var</span> o = $.extend({}, $.fn.checklist.defaults, options);
+        remove($(<span class="hljs-keyword">this</span>), o);
+        $(<span class="hljs-string">"body"</span>).unbind(<span class="hljs-string">"mouseup"</span>);
+        $(<span class="hljs-keyword">this</span>).show();   
+        
+    },</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-48">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-48">&#182;</a>
+              </div>
+              <p>public method update</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>    update : <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">options</span>) </span>{ 
+        <span class="hljs-keyword">var</span> o = $.extend({}, $.fn.checklist.defaults, options);
+        remove($(<span class="hljs-keyword">this</span>), o);
+        $(<span class="hljs-string">"body"</span>).unbind(<span class="hljs-string">"mouseup"</span>);</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-49">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-49">&#182;</a>
+              </div>
+              <p>console.log(“rimosso”);</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>        <span class="hljs-keyword">return</span> methods.init.apply( <span class="hljs-keyword">this</span>, <span class="hljs-built_in">arguments</span> );
+    },</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-50">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-50">&#182;</a>
+              </div>
+              <p>public method select</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>    select : <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">value, options</span>)</span>{
+        <span class="hljs-keyword">var</span> o = $.extend({}, $.fn.checklist.defaults, options);
+        <span class="hljs-keyword">var</span> $checkbox=$(<span class="hljs-keyword">this</span>).next(<span class="hljs-string">"."</span>+o.prefix+<span class="hljs-string">"checklist"</span>).find(<span class="hljs-string">'input[type=checkbox][value='</span> + value + <span class="hljs-string">']'</span>);
+        <span class="hljs-keyword">var</span> $select=$(<span class="hljs-keyword">this</span>).children(<span class="hljs-string">'option[value='</span> + value + <span class="hljs-string">']'</span>);
+        <span class="hljs-keyword">if</span>($select.is(<span class="hljs-string">":selected"</span>)) {
+            $checkbox.removeAttr(<span class="hljs-string">"checked"</span>).trigger(<span class="hljs-string">"change"</span>);
+            $select.removeAttr(<span class="hljs-string">"selected"</span>);
+        } <span class="hljs-keyword">else</span> { 
+            $checkbox.attr(<span class="hljs-string">"checked"</span>, <span class="hljs-string">"checked"</span>).trigger(<span class="hljs-string">"change"</span>);
+            $select.attr(<span class="hljs-string">"selected"</span>, <span class="hljs-string">"selected"</span>);
+        }
+    },</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-51">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-51">&#182;</a>
+              </div>
+              <p>public method unselectAll</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>    unselectAll: <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">value, options</span>) </span>{
+        <span class="hljs-keyword">var</span> o = $.extend({}, $.fn.checklist.defaults, options);
+        <span class="hljs-keyword">var</span> $checkboxes=$(<span class="hljs-keyword">this</span>).next(<span class="hljs-string">"."</span>+o.prefix+<span class="hljs-string">"checklist"</span>);
+        <span class="hljs-keyword">var</span> $that=$(<span class="hljs-keyword">this</span>);
+       
+        $checkboxes.find(<span class="hljs-string">"ul li"</span>).each(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>{
+            $(<span class="hljs-keyword">this</span>).find(<span class="hljs-string">"input[type=checkbox]"</span>).removeAttr(<span class="hljs-string">"checked"</span>).trigger(<span class="hljs-string">"change"</span>);
+            <span class="hljs-keyword">var</span> $val=$(<span class="hljs-keyword">this</span>).find(<span class="hljs-string">"input[type=checkbox]"</span>).val();
+            <span class="hljs-keyword">var</span> $select=$that.children(<span class="hljs-string">'option[value='</span> + $val + <span class="hljs-string">']'</span>);
+            $select.removeAttr(<span class="hljs-string">"selected"</span>);
+        });
+    }
+  };</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-52">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-52">&#182;</a>
+              </div>
+              <p>CHECKLIST MAIN METHOD AND METHOD SWITCH</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>  $.fn.checklist = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"> method </span>) </span>{</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-53">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-53">&#182;</a>
+              </div>
+              <p>Method calling logic</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>    <span class="hljs-keyword">if</span> ( methods[method] ) {
+      <span class="hljs-keyword">return</span> methods[ method ].apply( <span class="hljs-keyword">this</span>, <span class="hljs-built_in">Array</span>.prototype.slice.call( <span class="hljs-built_in">arguments</span>, <span class="hljs-number">1</span> ));
+    } <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> ( <span class="hljs-keyword">typeof</span> method === <span class="hljs-string">'object'</span> || ! method ) {
+      <span class="hljs-keyword">return</span> methods.init.apply( <span class="hljs-keyword">this</span>, <span class="hljs-built_in">arguments</span> );
+    } <span class="hljs-keyword">else</span> {
+      $.error( <span class="hljs-string">'Method '</span> +  method + <span class="hljs-string">' does not exist on jQuery.checklist'</span> );
+    }    
+    
+  };</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-54">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-54">&#182;</a>
+              </div>
+              <p>THE PLUGIN DEFAULT OPTIONS</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>  $.fn.checklist.defaults = {</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-55">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-55">&#182;</a>
+              </div>
+              <p>the css prefix for the generated html</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>      prefix:<span class="hljs-string">"ckl-"</span>,</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-56">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-56">&#182;</a>
+              </div>
+              <p>[false=normal behavior, 1=all checked, 2=only first checked but all selected]</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>      firstCheckAll:<span class="hljs-number">2</span>,</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-57">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-57">&#182;</a>
+              </div>
+              <p>the callback for first element click and transports the select selector and a boolean for selected checkbox</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>      first: <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"><span class="hljs-comment">/* this, isSelected */</span></span>) </span>{ <span class="hljs-comment">/* console.log(this, isSelected);*/</span> },</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-58">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-58">&#182;</a>
+              </div>
+              <p>the selectbox uses optgroups (does’nt work with checkedOnTop)</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>      optgroup: <span class="hljs-literal">true</span>,</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-59">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-59">&#182;</a>
+              </div>
+              <p>brings the checked elements on top</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>      checkedOnTop: <span class="hljs-literal">true</span>,</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-60">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-60">&#182;</a>
+              </div>
+              <p>the callback for the change event, transports the checkbox selector and the checkbox value</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>      change: <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"><span class="hljs-comment">/* $checkbox, value*/</span></span>)</span>{ <span class="hljs-comment">/*console.log("value: "+ value);*/</span> }
+  };
+
+})( jQuery );</pre></div></div>
+            
+        </li>
+        
+    </ul>
+  </div>
+</body>
+</html>

@@ -1,59 +1,29 @@
-####Web project starter
+####checklist.jquery
 
-A blank html5 project with grunt and bower
+a jquery multiple select to checlist plugin
 
-**grunt modules:**
-
-```
-* time-grunt
-* jit-grunt
-* autoprefixer
-* cssnano
-* grunt-contrib-concat  
-* grunt-contrib-jshint
-* grunt-contrib-less
-* grunt-contrib-uglify
-* grunt-patch
-* grunt-postcss
-* jit-grunt"
-* load-grunt-configs"
-* pixrem": "2.0.0
-* postcss-zindex
-* time-grunt
-```
+________________________________
 
 
-**bower dependencies:**
+Copyright (c) 2015 Andrea Gava
 
-```
-* bootstrap
-* jquery
-```
 
-Grunt is configured to compile Bootstrap from js and less. You can find al grunt configs in the config folder
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
 
-**INSTALL**
 
-```
-git clone https://github.com/AndreaGvA/webProjectStarter.git
-cd webProjectStarter
+The above copyright notice and this permission notice shall be included in
+all copies or substantial portions of the Software.
 
-npm install
-bower install
 
-```
-
-**USAGE**
-
-The main files are in src directory:
-
-```
-//your js scrpit goes here (or you can add more files in the concat configs. Don't forget to jshint new files):
-src/js/main.js
-
-//your less goes here
-src/less/main.less
-
-//don't forget to run grunt command to compile your coding before testing it in a browser
-
-```
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.  IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+THE SOFTWARE.

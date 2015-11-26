@@ -1,7 +1,4 @@
 {
-  "options": {
-        "jshintrc": "bower_components/bootstrap/js/.jshintrc"
-  },
-  "bootstrap": "bower_components/bootstrap/js/*.js",
+  "checklist": "src/js/checklist.jquery.js",
   "main": "src/js/main.js"
 }
