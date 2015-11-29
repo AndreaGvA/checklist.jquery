@@ -1,6 +1,6 @@
 module.exports = {
   "name": "checklist.jquery",
-  "version": "1.3.0",
+  "version": "1.3.1",
   "description": "a jquery multiple select to checlist plugin",
   "main": "checklist.jquery.js",
   "scripts": {

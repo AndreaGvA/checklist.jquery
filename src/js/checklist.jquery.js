@@ -42,18 +42,17 @@
     
     //if option firstCheckAll==1
     if(o.firstCheckAll==1){
-    	
+        
         $checkbox=$this.next("."+o.prefix+"checklist").find("li:not(:first-child) input[type=checkbox]");
         $this.next("."+o.prefix+"checklist").find("li:first-child input[type=checkbox]").change(function() {
             
             if($(this).is(":checked")){
-            	
+                
                 $this.find('option').each(function(){
                     $(this).attr("selected", "selected");
                 });
                 $this.next("."+o.prefix+"checklist").find("li:not(:first-child) input[type=checkbox]").each(function(){
                     $(this).prop("checked", true); 
-                    window.console.log($(this)); 
                 });
                 $label=$this.next("."+o.prefix+"checklist").find("li:first-child").text();
                 $this.next("."+o.prefix+"checklist").find("."+o.prefix+"label").html($label);
@@ -69,7 +68,7 @@
                 isSelected=false;
             }
             
-			//provides a callback for first element click and transports the select selector and a boolean for selected checkbox
+            //provides a callback for first element click and transports the select selector and a boolean for selected checkbox
             o.first($this, isSelected);
         });
     //else  if option firstCheckAll=2
@@ -104,7 +103,7 @@
     
     // for each checkbox created 
     $checkbox.each(function(){
-    	// i listen when the checkbox change value
+        // i listen when the checkbox change value
         $(this).change(function(){
             var $selector=$(this);
             var $value=$selector.val();
@@ -160,21 +159,21 @@
   function toggle($this, o) {
     //when the label or the toggle button is clicked
     $this.children("."+o.prefix+"toggle, ."+o.prefix+"label").click(function(){
-    	// if the checklist is visible it hides it
+        // if the checklist is visible it hides it
         if($this.children("."+o.prefix+"list").is(":visible")){
             $this.children("."+o.prefix+"list").fadeOut(function(){
-                $this.children("."+o.prefix+"toggle").css("background", "url(images/v.png) no-repeat 3px 0px").css("backgroundSize", "contain");
+                $this.children("."+o.prefix+"toggle").css("background", "url(img/v.png) no-repeat 3px 0px").css("backgroundSize", "contain");
                 $("body").unbind("mouseup");
             });
         //else if the checklist is closed
         } else {
-        	//if the checkedOnTop option is set to true
+            //if the checkedOnTop option is set to true
             if(o.checkedOnTop===true){
-            	 // if the firstCheckAll option is set i first clone and remove the first li
-            	var first;
-             	if(o.firstCheckAll==2 || o.firstCheckAll==1) {
-                	first=$this.find("li:first-child").clone();
-                	$this.find("li:first-child").remove();
+                 // if the firstCheckAll option is set i first clone and remove the first li
+                var first;
+                if(o.firstCheckAll==2 || o.firstCheckAll==1) {
+                    first=$this.find("li:first-child").clone();
+                    $this.find("li:first-child").remove();
                 }
                 var li=$this.find("li");
                 //than i sort the li's
@@ -199,8 +198,8 @@
                 });
                 
                  // if the firstCheckAll option is set i prepend the first option cloned before
-             	if(o.firstCheckAll==2 || o.firstCheckAll==1) {
-               	 	first.prependTo($this.find("ul"));
+                if(o.firstCheckAll==2 || o.firstCheckAll==1) {
+                    first.prependTo($this.find("ul"));
                 }
                 //finally i invoke the checkbox private method
                 checkbox($this.prev("select"), o);
@@ -208,7 +207,7 @@
             
             //open the checklist
             $this.children("."+o.prefix+"list").fadeIn(function(){
-                $this.children("."+o.prefix+"toggle").css("background", "url(images/x.png) no-repeat 3px 0px").css("backgroundSize", "contain");
+                $this.children("."+o.prefix+"toggle").css("background", "url(img/x.png) no-repeat 3px 0px").css("backgroundSize", "contain");
                 $("body").on("mouseup",function(e){
                     var $cont=$this.children("."+o.prefix+"list");
                      if (!$cont.is(e.target) && $cont.has(e.target).length === 0) {
@@ -239,9 +238,11 @@
   
   //private method checkboxTemplate
   //returns the li's with checkboxes html template
-  function checkboxTemplate(name, value, label){
+  function checkboxTemplate(name, value, label, isChecked){
+    var $check;
+    if(isChecked===true) $check="checked='checked'"; else $check="";
     var $tpl="<li>";
-    $tpl+="<input type='checkbox' name='"+name+"' value='"+value+"' />";
+    $tpl+="<input type='checkbox' "+$check+" name='"+name+"' value='"+value+"' />";
     $tpl+=label;
     $tpl+="</li>";
     return $tpl;
@@ -284,9 +285,38 @@
             $this.find("option").each(function(){
                 var $label=$(this).html();
                 var $value=$(this).val();
-                $tpl=checkboxTemplate($name, $value, $label);
+                var isChecked;
+                if($(this).is(":selected")) {
+                    isChecked=true;
+                } else {
+                    isChecked=false;
+                }
+                $tpl=checkboxTemplate($name, $value, $label, isChecked);
                 $that.children("ul").append($tpl);
+                
             });
+            var $label="";
+            //if i used some optgroups [does'nt work with the option checkedOnTop set to true]
+            if(o.optgroup===true) {
+                $this.next().find('input:checked').each(function(){
+                    if($label!==""){
+                        $label+=", "+$(this).parent().text();
+                    } else {
+                        $label+=$(this).parent().text();
+                    }
+                });
+                $this.next("."+o.prefix+"checklist").find("."+o.prefix+"label").html($label);
+            //else if is a plain selectbox
+            } else {
+                $this.next().find('input:checked').each(function(){
+                    if($label!==""){
+                        $label+=", "+$(this).parent().text();
+                    } else {
+                        $label+=$(this).parent().text();
+                    }
+                });
+                $this.next("."+o.prefix+"checklist").find("."+o.prefix+"label").html($label);
+            }
             //pass the select selector to the checkbox private method and invoke it
             checkbox($this, o);
             
@@ -317,32 +347,32 @@
         var o = $.extend({}, $.fn.checklist.defaults, options);
         remove($(this), o);
         $("body").unbind("mouseup");
-        //console.log("rimosso");
         return methods.init.apply( this, arguments );
     },
     //public method select
     select : function(value, options){
         var o = $.extend({}, $.fn.checklist.defaults, options);
-        var $checkbox=$(this).next("."+o.prefix+"checklist").find('input[type=checkbox][value=' + value + ']');
-        var $select=$(this).children('option[value=' + value + ']');
+        var $checkbox=$(this).next("."+o.prefix+"checklist").find('input[type=checkbox][value=' + parseInt(value) + ']');
+        var $select=$(this).children('option[value=' + parseInt(value) + ']');
+        
         if($select.is(":selected")) {
-            $checkbox.removeAttr("checked").trigger("change");
+            $checkbox.prop("checked", false).trigger("change");
             $select.removeAttr("selected");
         } else { 
-            $checkbox.attr("checked", "checked").trigger("change");
+            $checkbox.prop("checked", true).trigger("change");
             $select.attr("selected", "selected");
         }
+        
     },
     //public method unselectAll
     unselectAll: function(value, options) {
         var o = $.extend({}, $.fn.checklist.defaults, options);
         var $checkboxes=$(this).next("."+o.prefix+"checklist");
         var $that=$(this);
-       
         $checkboxes.find("ul li").each(function(){
-            $(this).find("input[type=checkbox]").removeAttr("checked").trigger("change");
+            $(this).find("input[type=checkbox]").prop("checked", false).trigger("change");
             var $val=$(this).find("input[type=checkbox]").val();
-            var $select=$that.children('option[value=' + $val + ']');
+            var $select=$that.children('option');
             $select.removeAttr("selected");
         });
     }

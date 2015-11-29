@@ -1,6 +1,6 @@
 ####checklist.jquery
 
-a jquery multiple select to checlist plugin
+a jquery multiple select to dropdown checklist plugin
 
 todos:
 ```
